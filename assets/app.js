@@ -1,23 +1,23 @@
 $(document).ready(function () {
 
     // my array
-    var topic = ["Final Fantasy", "The Last of Us", "Sonic the Hedgehog", "Minecraft", "Civilization", "Portal2", "Day of the Tentacle"];
+    var games = ["Final Fantasy", "The Last of Us", "Sonic the Hedgehog", "Minecraft", "Civilization", "Portal2", "Day of the Tentacle"];
 
-    //function that displays the gif buttons
+    //displays the original gif buttons
 
     function displayButtons() {
         $("#buttonList").empty();
-        for (var i = 0; i < topic.length; i++) {
+        for (var i = 0; i < games.length; i++) {
             var gifButton = $("<button>");
             gifButton.addClass("vidGame");
             gifButton.addClass("btn btn-primary")
-            gifButton.attr("data-name", topic[i]);
-            gifButton.text(topic[i]);
+            gifButton.attr("data-name", games[i]);
+            gifButton.text(games[i]);
             $("#buttonList").append(gifButton);
         }
     }
 
-    //function to add new button
+    //add new button
 
     function addNewButton() {
         $("#addGif").on("click", function () {
@@ -25,24 +25,24 @@ $(document).ready(function () {
             if (vidGame == "") {
                 return false;//no blank buttons
             }
-            topic.push(vidGame);
+            games.push(vidGame);
 
-            displayGifButtons();
+            displayButtons();
             return false;
         });
     }
 
-    //function to remove last button
+    //remove last button
     function removeLastButton() {
         $("removeGif").on("click", function () {
-            topic.pop(vidGame);
-            displayGifButtons();
+            games.pop(vidGame);
+            displayButtons();
             return false;
         });
 
     }
 
-    // function that displays the gifs
+    //displays the gifs
 
     function displayGifs() {
         var vidGame = $(this).attr("data-name");
@@ -58,7 +58,7 @@ $(document).ready(function () {
                 //show results of gifs
                 var results = response.data;
                 if (results == "") {
-                    alert("There is not a giffy for this!");
+                    alert("There is not a gif for this!");
                 }
                 for (var i = 0; i < results.length; i++) {
                     //put gifs in a div
@@ -69,12 +69,12 @@ $(document).ready(function () {
 
                     //pull gif
                     var gifImage = $("<img>");
-                    gifImage.attr("src", results[i].images.fixed_height_small_still.url);
-                    //paused images
-                    gifImage.attr("data-still", results[i].images.fixed_height_small_still.url);
-                    //animated images
-                    gifImage.attr("data-animate", results[i].images.fixed_height_small.url);
-                    //how images come in, already paused
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
+                    //pause images
+                    gifImage.attr("data-still", results[i].images.fixed_height_still.url);
+                    //animate images
+                    gifImage.attr("data-animate", results[i].images.fixed_height.url);
+                    //images come in already paused
                     gifImage.attr("data-state", "still");
                     gifImage.addClass("image");
                     gifDiv.append(gifImage);

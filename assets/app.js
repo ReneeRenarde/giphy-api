@@ -46,7 +46,7 @@ $(document).ready(function () {
 
     function displayGifs() {
         var vidGame = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + lady + "&api_key=rBLNPaM4mfQiCXkU9zG7grCbWiwGM50N=8";
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + vidGame + "&api_key=rBLNPaM4mfQiCXkU9zG7grCbWiwGM50N&limit=10";
 
         $.ajax({
             url: queryURL,
